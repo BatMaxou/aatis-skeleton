@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   db:
     image: mariadb:10.3
@@ -10,20 +8,28 @@ services:
     networks:
       - aatis_core
 
-  app:
+  php:
     build:
-      context: .
-      dockerfile: .boing/docker/app/aatis/Dockerfile
+      context: .boing/docker/php
       args:
-        PHP_VERSION: "8.2"
-    volumes:
-      - .:/srv
+        PHP_VERSION: "8.4"
     networks:
       - aatis_core
+    volumes:
+      - .:/srv
+
+  web:
+    depends_on:
+      - php
+    build:
+      context: .boing/docker/nginx/aatis
+    networks:
+      - aatis_core
+    volumes:
+      - ./public:/srv/public
 
 networks:
   aatis_core:
-    external: true
 
 volumes:
   db_data:

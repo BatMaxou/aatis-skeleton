@@ -13,3 +13,8 @@ docker-compose.override.yaml
 supervisord.log
 supervisord.pid
 ### < Supervisor
+
+### > Files
+/uploads/
+/public/pdf/
+### < Files

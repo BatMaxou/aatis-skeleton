@@ -1,6 +1,6 @@
 exclude_paths:
-  - '/Kernel.php'
-  - '/Entity'
+  - "/Kernel.php"
+  - "/Entity"
 
 include_services:
   - 'Aatis\Routing\Service\Router'
@@ -18,20 +18,21 @@ include_services:
 services:
   Aatis\Tester\Common\Service\Writer:
     arguments:
-      defaultMessage: 'Hello World !'
+      defaultMessage: "Hello World !"
 
   Aatis\Routing\Service\Router:
     arguments:
+      notFoundErrorTemplate: "/errors/zebi.error.tpl.php"
       notFoundErrorVars:
         code: 404
-        message: 'Page not found !'
-  
+        message: "Page not found !"
+
   Aatis\TemplateRenderer\Service\TemplateRenderer:
     arguments:
       extraRenderers:
-        - 'Aatis\Tester\Service\TemplateRenderer\ExtraRenderer'
-        - 'Aatis\Tester\Service\TemplateRenderer\ZebiRenderer'
-  
+        - 'Aatis\Tester\TemplateRenderer\Service\ExtraRenderer'
+        - 'Aatis\Tester\TemplateRenderer\Service\ZebiRenderer'
+
   Aatis\ErrorHandler\Service\ExceptionCodeBag:
     arguments:
       extraExceptionCodeEnums:
@@ -39,4 +40,4 @@ services:
 
   Aatis\Tester\EventDispatcher\Listener\CustomListener:
     tags:
-      - 'event-listener'
+      - "event-listener"

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-<?php $renderer->render(
+<?php echo $renderer->render(
     $templatesFolderPath.'/includes/header.tpl.php',
     [
         'title' => $title,
@@ -9,9 +9,7 @@
 ); ?>
 
 <body>
-    <section id="hello">
-        <h1><?php echo $title; ?></h1>
-    </section>
+    <h1><?php echo $title; ?></h1>
 </body>
 
 </html>

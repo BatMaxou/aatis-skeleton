@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-<?php $renderer->render(
+<?php echo $renderer->render(
     $templatesFolderPath.'/includes/header.tpl.php',
     [
         'title' => $title,

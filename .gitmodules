@@ -1,3 +1,39 @@
 [submodule ".boing"]
 	path = .boing
 	url = git@github.com:BatMaxou/boing.git
+[submodule ".aatis/dependency-injection"]
+	path = .aatis/dependency-injection
+	url = git@github.com:BatMaxou/aatis-dependency-injection.git
+[submodule ".aatis/kernel"]
+	path = .aatis/kernel
+	url = git@github.com:BatMaxou/aatis-kernel.git
+[submodule ".aatis/routing"]
+	path = .aatis/routing
+	url = git@github.com:BatMaxou/aatis-routing.git
+[submodule ".aatis/error-handler"]
+	path = .aatis/error-handler
+	url = git@github.com:BatMaxou/aatis-error-handler.git
+[submodule ".aatis/options-resolver"]
+	path = .aatis/options-resolver
+	url = git@github.com:BatMaxou/aatis-options-resolver.git
+[submodule ".aatis/template-renderer"]
+	path = .aatis/template-renderer
+	url = git@github.com:BatMaxou/aatis-template-renderer.git
+[submodule ".aatis/tester"]
+	path = .aatis/tester
+	url = git@github.com:BatMaxou/aatis-tester.git
+[submodule ".aatis/event-dispatcher"]
+	path = .aatis/event-dispatcher
+	url = git@github.com:BatMaxou/aatis-event-dispatcher.git
+[submodule ".aatis/logger"]
+	path = .aatis/logger
+	url = git@github.com:BatMaxou/aatis-logger.git
+[submodule ".aatis/file-manager"]
+	path = .aatis/file-manager
+	url = git@github.com:BatMaxou/aatis-file-manager.git
+[submodule ".aatis/http-foundation"]
+	path = .aatis/http-foundation
+	url = git@github.com:BatMaxou/aatis-http-foundation.git
+[submodule ".aatis/stacking-service"]
+	path = .aatis/stacking-service
+	url = git@github.com:BatMaxou/aatis-stacking-service.git
