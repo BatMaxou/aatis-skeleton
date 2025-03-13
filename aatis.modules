@@ -1,0 +1,12 @@
+dependency-injection
+error-handler
+event-dispatcher
+file-manager
+http-foundation
+kernel
+logger
+options-resolver
+routing
+stacking-service
+template-renderer
+tester
