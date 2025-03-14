@@ -7,15 +7,44 @@ AATIS_MODULES=$(shell cat aatis.modules.commit)
 
 include .boing/makes/aatis.mk
 
+# Get extra arguments
+args = `arg="$(filter-out $@,$(MAKECMDGOALS))" && echo $${arg:-${1}}`
+
+# Allow to run command with extra arguments
+%:
+	@:
+	
 commit:
 	@cd .aatis; \
 	for module in ${AATIS_MODULES}; do \
-		echo "$${module}"; \
 		cd "$${module}"; \
 		git checkout develop; \
 		git add .; \
-		git commit -m ":fire: Remove composer.lock"; \
+		git commit -m "${args}"; \
 		git push origin develop; \
+		cd ../; \
+	done
+.PHONY: commit
+
+amend:
+	@cd .aatis; \
+	for module in ${AATIS_MODULES}; do \
+		cd "$${module}"; \
+		git checkout develop; \
+		git add .; \
+		git commit --amend --no-edit; \
+		git push origin develop -f; \
+		cd ../; \
+	done
+.PHONY: commit
+
+amend-message:
+	@cd .aatis; \
+	for module in ${AATIS_MODULES}; do \
+		cd "$${module}"; \
+		git checkout develop; \
+		git commit --amend -m "${args}"; \
+		git push origin develop -f; \
 		cd ../; \
 	done
 .PHONY: commit
