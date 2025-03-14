@@ -19,3 +19,12 @@ commit:
 		cd ../; \
 	done
 .PHONY: commit
+
+up-modules:
+	@git checkout develop
+	@git pull origin develop
+	@-git submodule update --remote >> /dev/null
+	@git add .
+	@git commit -m ":arrow_up: Update modules"
+	@git push origin develop
+.PHONY: up-modules
