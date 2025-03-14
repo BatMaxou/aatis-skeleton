@@ -18,3 +18,7 @@ supervisord.pid
 /uploads/
 /public/pdf/
 ### < Files
+
+### > Aatis
+aatis.modules.commit
+### < Aatis
