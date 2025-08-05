@@ -37,10 +37,6 @@
 	path = .aatis/routing
 	url = git@github.com:BatMaxou/aatis-routing.git
 	branch = develop
-[submodule ".aatis/stacking-service"]
-	path = .aatis/stacking-service
-	url = git@github.com:BatMaxou/aatis-stacking-service.git
-	branch = develop
 [submodule ".aatis/template-renderer"]
 	path = .aatis/template-renderer
 	url = git@github.com:BatMaxou/aatis-template-renderer.git
@@ -48,4 +44,12 @@
 [submodule ".aatis/tester"]
 	path = .aatis/tester
 	url = git@github.com:BatMaxou/aatis-tester.git
+	branch = develop
+[submodule ".aatis/tag"]
+	path = .aatis/tag
+	url = git@github.com:BatMaxou/aatis-tag.git
+	branch = develop
+[submodule ".aatis/parameter-bag"]
+	path = .aatis/parameter-bag
+	url = git@github.com:BatMaxou/aatis-parameter-bag.git
 	branch = develop

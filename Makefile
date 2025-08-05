@@ -19,7 +19,6 @@ commit:
 	for module in ${AATIS_MODULES}; do \
 		cd "$${module}"; \
 		git checkout develop; \
-		git add .; \
 		git commit -m "${args}"; \
 		git push origin develop; \
 		cd ../; \

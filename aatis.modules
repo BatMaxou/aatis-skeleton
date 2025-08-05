@@ -6,7 +6,8 @@ http-foundation
 kernel
 logger
 options-resolver
+parameter-bag
 routing
-stacking-service
+tag
 template-renderer
 tester

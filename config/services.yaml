@@ -1,43 +1,25 @@
 exclude_paths:
-  - "/Kernel.php"
-  - "/Entity"
+  - /Kernel.php
+  - /Entity
 
 include_services:
-  - 'Aatis\Routing\Service\Router'
-  - 'Aatis\Tester\Common\Service\Writer'
-  - 'Aatis\TemplateRenderer\Service\TemplateRenderer'
-  - 'Aatis\FileManager\Service\FileManager'
-  - 'Aatis\Logger\Service\Logger'
-  - 'Aatis\ErrorHandler\Service\ErrorCodeBag'
-  - 'Aatis\ErrorHandler\Service\ExceptionCodeBag'
-  - 'Aatis\EventDispatcher\Service\ListenerProvider'
-  - 'Aatis\EventDispatcher\Service\EventDispatcher'
-  - 'Aatis\Tester\EventDispatcher\Listener\CustomListener'
-  - 'Aatis\Tester\EventDispatcher\Subscriber\CustomSubscriber'
+  - Aatis\Tester\Common\Service\Writer
+  - Aatis\Tester\EventDispatcher\Listener\CustomListener
+  - Aatis\Tester\EventDispatcher\Subscriber\CustomSubscriber
+  - Aatis\Tester\TemplateRenderer\Service\ExtraRenderer
 
 services:
   Aatis\Tester\Common\Service\Writer:
     arguments:
       defaultMessage: "Hello World !"
 
-  Aatis\Routing\Service\Router:
-    arguments:
-      notFoundErrorTemplate: "/errors/zebi.error.tpl.php"
-      notFoundErrorVars:
-        code: 404
-        message: "Page not found !"
-
-  Aatis\TemplateRenderer\Service\TemplateRenderer:
-    arguments:
-      extraRenderers:
-        - 'Aatis\Tester\TemplateRenderer\Service\ExtraRenderer'
-        - 'Aatis\Tester\TemplateRenderer\Service\ZebiRenderer'
-
   Aatis\ErrorHandler\Service\ExceptionCodeBag:
     arguments:
       extraExceptionCodeEnums:
-        - 'Aatis\Tester\ErrorHandler\ExtraExceptionCodeEnum'
+        - Aatis\Tester\ErrorHandler\ExtraExceptionCodeEnum
 
   Aatis\Tester\EventDispatcher\Listener\CustomListener:
     tags:
       - "event-listener"
+      - { tag: "custom-tag", priority: 10 }
+

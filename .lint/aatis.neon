@@ -2,5 +2,5 @@ parameters:
     level: max
     ignoreErrors:
     excludePaths:
-        - .aatis/error-handler/templates
+        - ../.aatis/error-handler/templates
     reportUnmatchedIgnoredErrors: false

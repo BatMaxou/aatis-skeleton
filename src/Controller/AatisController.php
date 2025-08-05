@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use Aatis\DependencyInjection\Enum\ServiceTagOption;
 use Aatis\DependencyInjection\Exception\FileNotFoundException;
 use Aatis\DependencyInjection\Interface\ContainerInterface;
+use Aatis\DependencyInjection\Interface\ServiceInstanciatorInterface;
+use Aatis\DependencyInjection\Service\ServiceTagBuilder;
+use Aatis\EventDispatcher\Interface\EventSubscriberInterface;
 use Aatis\EventDispatcher\Service\EventDispatcher;
 use Aatis\HttpFoundation\Component\File\File;
 use Aatis\HttpFoundation\Component\FileResponse;
@@ -14,6 +18,7 @@ use Aatis\HttpFoundation\Component\Response;
 use Aatis\Routing\Attribute\Route;
 use Aatis\Routing\Controller\AbstractController;
 use Aatis\TemplateRenderer\Interface\TemplateRendererInterface;
+use Aatis\TemplateRenderer\Interface\TypedTemplateRendererInterface;
 use Aatis\Tester\Common\Interface\WriterInterface;
 use Aatis\Tester\EventDispatcher\Event\CustomEvent;
 use Aatis\Tester\EventDispatcher\Event\CustomStoppableEvent;
@@ -28,6 +33,7 @@ class AatisController extends AbstractController
         TemplateRendererInterface $templateRenderer,
         private readonly WriterInterface $writer,
         private readonly EventDispatcher $eventDispatcher,
+        private readonly ServiceTagBuilder $serviceTagBuilder,
         private readonly string $_document_root,
         private readonly ?LoggerInterface $logger = null,
     ) {
@@ -46,6 +52,11 @@ class AatisController extends AbstractController
     public function container(): Response
     {
         dd($this->container);
+        dd($this->container->get($this->serviceTagBuilder->buildFromInterface(ServiceInstanciatorInterface::class, [ServiceTagOption::SERVICE_TARGETED])));
+        $event = new CustomStoppableEvent('This is a message from Stoppable Event !');
+        $this->eventDispatcher->dispatch($event);
+
+        dd($this->container->get($this->serviceTagBuilder->buildFromInterface(EventSubscriberInterface::class, [ServiceTagOption::SERVICE_TARGETED])));
     }
 
     #[Route('/hello')]
@@ -68,7 +79,8 @@ class AatisController extends AbstractController
     #[Route('/html')]
     public function html(): Response
     {
-        return $this->render('/html/home.html');
+        $this->render('/html/home.html');
+        dd($this->container);
     }
 
     #[Route('/twig')]
@@ -250,6 +262,18 @@ class AatisController extends AbstractController
         $file->setOverrideName('zebi');
 
         $file->save(sprintf('%s/../uploads', $this->_document_root));
+
+        return new Response('', 204);
+    }
+
+    #[Route('/tag')]
+    public function tag(ServiceTagBuilder $serviceTagBuilder): Response
+    {
+        $tag = $serviceTagBuilder->buildFromInterface(TypedTemplateRendererInterface::class, [ServiceTagOption::SERVICE_TARGETED]);
+
+        $t = $this->container->get($tag);
+
+        dd($t);
 
         return new Response('', 204);
     }

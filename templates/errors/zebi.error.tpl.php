@@ -12,6 +12,7 @@
 
 <body>
     <h1>Error <?php echo $code; ?> :</h1>
+    <p>ZEBI</p>
     <p><?php echo $message; ?></p>
 </body>
 
