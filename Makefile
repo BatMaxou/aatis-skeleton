@@ -13,7 +13,21 @@ args = `arg="$(filter-out $@,$(MAKECMDGOALS))" && echo $${arg:-${1}}`
 # Allow to run command with extra arguments
 %:
 	@:
-	
+
+up:
+	@git fetch -p
+	@git checkout develop
+	@git pull origin develop -f
+	@cd .aatis; \
+	for module in ${AATIS_MODULES}; do \
+		cd "$${module}"; \
+		git checkout develop; \
+		git fetch -p; \
+		git pull origin develop -f; \
+		cd ../; \
+	done
+.PHONY: up
+
 commit:
 	@cd .aatis; \
 	for module in ${AATIS_MODULES}; do \

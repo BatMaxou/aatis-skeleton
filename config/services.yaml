@@ -7,6 +7,7 @@ include_services:
   - Aatis\Tester\EventDispatcher\Listener\CustomListener
   - Aatis\Tester\EventDispatcher\Subscriber\CustomSubscriber
   - Aatis\Tester\TemplateRenderer\Service\ExtraRenderer
+  - Aatis\Tester\Cache\Service\CacheTestPool
 
 services:
   Aatis\Tester\Common\Service\Writer:
